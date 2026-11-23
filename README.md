@@ -88,6 +88,23 @@ npx skills add letr1n1ty/ui-lookbook
 
 ---
 
+## How to Prompt (Usage Examples)
+
+Once installed, just describe what you are building in natural language — no CLI flags to memorize. Mention `$ui-lookbook` explicitly if you have multiple design skills installed and want to guarantee the live-scouting + open-source registry pipeline.
+
+- **Open-ended by type & mood (auto-selects aesthetic mode & live references)**
+  > "Use `$ui-lookbook` to design a homepage for an independent specialty coffee roastery — warm editorial print restraint, no generic SaaS cards."
+
+- **Targeted local upgrade (preserves existing design tokens & structure)**
+  > "Use `$ui-lookbook` to upgrade only the top navbar into an expandable multi-column Mega Menu and the footer into a large-type studio layout without altering our existing palette or hero."
+
+- **Explicit reference URL + specific interactive feel**
+  > "I like the restrained layout rhythm of `https://linear.app`. Use `$ui-lookbook` to inspect it as a structural reference and build our Vue 3 synthesizer showcase with a ferrofluid hero stage and draggable knobs."
+
+> **Tip**: Including one sentence about your **industry + desired mood or brand palette** helps the skill lock onto the right mode (Mode A / B / C) and gallery category on the first try.
+
+---
+
 ## Standalone Script Usage
 
 ```bash

@@ -168,20 +168,22 @@ async function cmdScout(target, outDir, deepCount) {
       return;
     }
     await page.addStyleTag({ content: "#onetrust-banner-sdk, .fc-consent-root, [id*=\"cookie\" i][class*=\"banner\" i] { display: none !important; }" }).catch(() => {});
-    const galleryShot = path.join(outDir, `gallery-overview.png`);
-    await page.screenshot({ path: galleryShot, fullPage: false });
-
     // If target is already a direct non-preset studio URL, extract DNA directly
     const isPreset = Boolean(PRESETS[target]);
     if (!isPreset) {
+      const heroShot = path.join(outDir, `live-1-hero.png`);
+      await page.screenshot({ path: heroShot, fullPage: false });
       const dna = await extractLiveSiteDna(page);
       await page.evaluate(() => window.scrollBy(0, 860));
       await page.waitForTimeout(700);
       const midShot = path.join(outDir, `live-1-mid.png`);
       await page.screenshot({ path: midShot });
-      console.log(JSON.stringify({ ok: true, mode: "direct-site", url, screenshots: [galleryShot, midShot], dna }, null, 2));
+      console.log(JSON.stringify({ ok: true, mode: "direct-site", url, screenshots: { hero: heroShot, mid: midShot }, dna }, null, 2));
       return;
     }
+
+    const galleryShot = path.join(outDir, `gallery-overview.png`);
+    await page.screenshot({ path: galleryShot, fullPage: false });
 
     // Discover real external featured websites from the gallery
     const candidateUrls = await page.evaluate((skipList) => {

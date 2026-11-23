@@ -33,6 +33,9 @@ Read [references/inspiration-galleries.md](references/inspiration-galleries.md) 
 # Presets: minimal | godly | curated | awwwards | httpster | navbar-megamenu | footer-typographic | onepagelove | websitevice | brutalist
 node <skill-dir>/scripts/visual_scout.cjs scout minimal --deep 2 --out /tmp/ui-lookbook-scout
 
+# Or directly scout a specific reference URL supplied by the user:
+node <skill-dir>/scripts/visual_scout.cjs scout https://linear.app --out /tmp/ui-lookbook-scout
+
 # Optional fast index queries (Siteinspire API, Designeer 913-item catalog, llms.txt):
 python3 <skill-dir>/scripts/query_refs.py siteinspire --category architecture,minimal --limit 5
 python3 <skill-dir>/scripts/query_refs.py llms navbar "mega"
