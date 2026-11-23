@@ -1,9 +1,9 @@
 ---
-name: vibe-ui-refs
+name: ui-lookbook
 description: "Discover live external web design benchmarks, dissect real featured studio websites (full-page composition, typography scale, spacing rhythm, mobile adaptation), and pull MIT/open-source interactive or motion component source from curated galleries and registries (Minimal Gallery, Siteinspire, Godly, Awwwards, Curated, Navbar/Footer Gallery, Designeer, React Bits, Vue Bits, Aceternity, Magic UI, Cult UI, Animate UI). Use when creating a high-craft website or showcase, researching real industry/section visual references, or upgrading specific UI sections with proven open-source interactive primitives. Not for backend logic, routine bug fixes, form validation, or minor CSS tweaks that need no external benchmarks or new components."
 ---
 
-# Vibe UI Refs
+# UI Lookbook
 
 Bridge the gap between LLM default wireframes and real studio-grade web design by **(1) inspecting real live featured websites (not just gallery thumbnails or text links), (2) calibrating ambition to the brand's exact aesthetic mode instead of forcing one-size-fits-all effects, (3) adapting proven MIT/open-source primitives cleanly into the project's token system, and (4) verifying desktop + mobile rendering before handoff.**
 
@@ -31,7 +31,7 @@ Read [references/inspiration-galleries.md](references/inspiration-galleries.md) 
 
 ```bash
 # Presets: minimal | godly | curated | awwwards | httpster | navbar-megamenu | footer-typographic | onepagelove | websitevice | brutalist
-node <skill-dir>/scripts/visual_scout.cjs scout minimal --deep 2 --out /tmp/vibe-scout
+node <skill-dir>/scripts/visual_scout.cjs scout minimal --deep 2 --out /tmp/ui-lookbook-scout
 
 # Optional fast index queries (Siteinspire API, Designeer 913-item catalog, llms.txt):
 python3 <skill-dir>/scripts/query_refs.py siteinspire --category architecture,minimal --limit 5
@@ -72,7 +72,7 @@ python3 <skill-dir>/scripts/query_refs.py source cultui direction-aware-tabs
    After `vite build` succeeds, run:
 
 ```bash
-node <skill-dir>/scripts/visual_scout.cjs audit <project-dir> --out /tmp/vibe-audit
+node <skill-dir>/scripts/visual_scout.cjs audit <project-dir> --out /tmp/ui-lookbook-audit
 ```
 
    Confirm `runtimeErrors`, `horizontalOverflow`, `clippedText`, and `brokenImages` are all empty, then **call `view_image` on `audit-desktop-hero.png`, `audit-desktop-mid.png`, and `audit-mobile.png`**. Fix any cramped mobile layout, clipped glyph, or generic wireframe box before finishing.

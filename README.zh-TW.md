@@ -1,10 +1,10 @@
-# Vibe UI Refs
+# UI Lookbook
 
 [English](README.md) | **繁體中文** | [简体中文](README.zh-CN.md)
 
 一款專為 Codex、Claude Code 與相容 AI 開發代理打造的開源 **Agent Skill**，用來打破 AI 預設「公版白底線框卡片」的天花板，讓前端作品真正對齊國際設計工作室水準。
 
-與單純把設計網站書籤塞進提示詞不同，**Vibe UI Refs** 建立了一套完整的四階段視覺與工程閉環：
+與單純把設計網站書籤塞進提示詞不同，**UI Lookbook** 建立了一套完整的四階段視覺與工程閉環：
 
 1. **三種美學氣質分流（絕不盲目堆特效）**：動工前先依品牌性質定錨為 **Mode A（極簡編輯與奢華克制）**、**Mode B（品牌敘事與既有系統局部升級）** 或 **Mode C（沉浸聲光與實驗互動）**，讓建築與藝術網站維持克制留白，讓音訊／創意工具釋放完整互動張力。
 2. **真實入選原站深層視覺偵察（`visual_scout.cjs`）**：不只掃描畫廊文字或縮圖牆，而是自動由 Minimal Gallery、Godly、Awwwards、Curated、Navbar Gallery、Footer Design 等精選站點進入 1～2 個真實線上獲選作品原站，拍攝 `1440×960` 全尺寸畫面並提取計算字體、字級比例與留白 DNA 供模型親眼拆解。
@@ -15,7 +15,7 @@
 
 ## 實測成品展示（獨立盲測渲染結果）
 
-以下三組頁面皆由乾淨上下文代理掛載 `vibe-ui-refs` 端對端生成，並通過桌機 `1440×960` 與手機 `390×844` 無頭瀏覽器 `0px` 溢位驗證。
+以下三組頁面皆由乾淨上下文代理掛載 `ui-lookbook` 端對端生成，並通過桌機 `1440×960` 與手機 `390×844` 無頭瀏覽器 `0px` 溢位驗證。
 
 ### Mode A — 極簡編輯與奢華克制（零 WebGL、專論無框版式）
 *Atelier Kuroda（京都／臺北建築事務所）：深入拆解 Minimal Gallery 與 Siteinspire 建築實站後，完全排除花俏特效，結合無框礦物裱背（Passe-Partout）4×5 自然光建築攝影、雙城即時座標細線與互動太陽高度角剖面研究檯。*
@@ -69,16 +69,16 @@
 
 ```bash
 # 安裝至 Codex
-git clone https://github.com/letr1n1ty/vibe-ui-refs.git ~/.codex/skills/vibe-ui-refs
+git clone https://github.com/letr1n1ty/ui-lookbook.git ~/.codex/skills/ui-lookbook
 
 # 選用：同步軟連結至其他多 Agent 環境（如 Claude Code / .agents）
-ln -s ~/.codex/skills/vibe-ui-refs ~/.agents/skills/vibe-ui-refs
+ln -s ~/.codex/skills/ui-lookbook ~/.agents/skills/ui-lookbook
 ```
 
 ### 方式二：透過 Agent Skills CLI 安裝
 
 ```bash
-npx skills add letr1n1ty/vibe-ui-refs
+npx skills add letr1n1ty/ui-lookbook
 ```
 
 ### 腳本執行環境需求
@@ -92,8 +92,8 @@ npx skills add letr1n1ty/vibe-ui-refs
 
 ```bash
 # 1. 從 Minimal Gallery 或 Godly 自動點入 2 個真實線上作品站截圖並提取排版 DNA
-node scripts/visual_scout.cjs scout minimal --deep 2 --out /tmp/vibe-scout
-node scripts/visual_scout.cjs scout godly --deep 2 --out /tmp/vibe-scout
+node scripts/visual_scout.cjs scout minimal --deep 2 --out /tmp/ui-lookbook-scout
+node scripts/visual_scout.cjs scout godly --deep 2 --out /tmp/ui-lookbook-scout
 
 # 2. 依美學模式瀏覽精選開源元件配方
 python3 scripts/query_refs.py recipes --stack react --mode editorial
@@ -110,7 +110,7 @@ python3 scripts/query_refs.py designeer "button"
 python3 scripts/query_refs.py llms navbar "mega"
 
 # 5. 對建置後的 dist/ 執行桌機（1440x960）與手機（390x844）雙視窗客觀稽核
-node scripts/visual_scout.cjs audit ./my-app --out /tmp/vibe-audit
+node scripts/visual_scout.cjs audit ./my-app --out /tmp/ui-lookbook-audit
 ```
 
 ---
@@ -118,7 +118,7 @@ node scripts/visual_scout.cjs audit ./my-app --out /tmp/vibe-audit
 ## 目錄結構
 
 ```text
-vibe-ui-refs/
+ui-lookbook/
 ├── SKILL.md                           # 核心 Skill 指令與四階段工作流
 ├── agents/openai.yaml                 # Codex 介面中繼資料與觸發策略
 ├── references/

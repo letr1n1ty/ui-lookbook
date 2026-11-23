@@ -318,7 +318,7 @@ async function cmdAudit(targetPath, outDir) {
 (async () => {
   const { pos, flags } = parseArgs(process.argv.slice(2));
   const [cmd, target] = pos;
-  const outDir = path.resolve(flags.out || path.join(os.tmpdir(), "vibe-ui-scout"));
+  const outDir = path.resolve(flags.out || path.join(os.tmpdir(), "ui-lookbook-scout"));
   if (cmd === "scout" && target) return cmdScout(target, outDir, flags.deep || 2);
   if (cmd === "audit" && target) return cmdAudit(target, outDir);
   console.error("Usage:\n  node visual_scout.cjs scout <godly|awwwards|minimal|navbar-megamenu|footer-typographic|curated|httpster|onepagelove|websitevice|brutalist|URL> [--out <dir>]\n  node visual_scout.cjs audit <project-dir> [--out <dir>]");

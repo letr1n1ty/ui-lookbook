@@ -1,8 +1,8 @@
 interface:
-  display_name: "Vibe UI Refs"
+  display_name: "UI Lookbook"
   short_description: "路由 27 個網頁靈感站與動效元件 Registry，精準取樣與拉取原始碼"
   brand_color: "#0F766E"
-  default_prompt: "使用 $vibe-ui-refs 為目前的網頁挑選合適的參考標竿與現成動效元件。"
+  default_prompt: "使用 $ui-lookbook 為目前的網頁挑選合適的參考標竿與現成動效元件。"
 
 policy:
   allow_implicit_invocation: true

@@ -1,10 +1,10 @@
-# Vibe UI Refs
+# UI Lookbook
 
 **English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
 
 An open-source **Agent Skill** for Codex, Claude Code, and compatible coding agents that bridges the gap between generic AI Tailwind wireframes and studio-grade web design.
 
-Instead of pasting static bookmarks into a prompt or slapping random animations onto bordered white cards, **Vibe UI Refs** gives your agent a 4-stage visual craft workflow:
+Instead of pasting static bookmarks into a prompt or slapping random animations onto bordered white cards, **UI Lookbook** gives your agent a 4-stage visual craft workflow:
 
 1. **Mode Calibration First**: Classifies each project into **Mode A (Editorial & Minimal Restraint)**, **Mode B (Brand Narrative & Local Upgrade)**, or **Mode C (Immersive & Experimental)** so minimal architecture sites stay quiet and restrained while audio/creative labs unleash full interactive WebGL.
 2. **Live Original-Site Deep Scouting (`visual_scout.cjs`)**: Visits real featured studio websites from curated galleries (Minimal Gallery, Godly, Awwwards, Curated, Navbar Gallery, Footer Design, Siteinspire, Designeer), captures full `1440×960` desktop views, and extracts computed CSS typography and layout DNA for visual inspection.
@@ -15,7 +15,7 @@ Instead of pasting static bookmarks into a prompt or slapping random animations 
 
 ## Visual Showcase (Blind Evaluation Outputs)
 
-All pages below were generated end-to-end by an independent agent equipped with `vibe-ui-refs` and verified at `1440×960` desktop and `390×844` mobile with `0px` overflow.
+All pages below were generated end-to-end by an independent agent equipped with `ui-lookbook` and verified at `1440×960` desktop and `390×844` mobile with `0px` overflow.
 
 ### Mode A — Editorial & Minimal Restraint (Zero WebGL, Monograph Grid)
 *Atelier Kuroda (Kyoto / Taipei architecture studio): inspired by live Minimal Gallery & Siteinspire architectural studios, pairing borderless Passe-Partout 4×5 photography with hairline monograph typography and interactive solar section diagrams.*
@@ -69,16 +69,16 @@ All pages below were generated end-to-end by an independent agent equipped with 
 
 ```bash
 # Install for Codex
-git clone https://github.com/letr1n1ty/vibe-ui-refs.git ~/.codex/skills/vibe-ui-refs
+git clone https://github.com/letr1n1ty/ui-lookbook.git ~/.codex/skills/ui-lookbook
 
 # Optional: share across Claude Code / multi-agent environments
-ln -s ~/.codex/skills/vibe-ui-refs ~/.agents/skills/vibe-ui-refs
+ln -s ~/.codex/skills/ui-lookbook ~/.agents/skills/ui-lookbook
 ```
 
 ### Option 2: Agent Skills CLI
 
 ```bash
-npx skills add letr1n1ty/vibe-ui-refs
+npx skills add letr1n1ty/ui-lookbook
 ```
 
 ### Prerequisites for Helper Scripts
@@ -92,8 +92,8 @@ npx skills add letr1n1ty/vibe-ui-refs
 
 ```bash
 # 1. Deep-scout 2 real featured studio websites from Minimal Gallery or Godly
-node scripts/visual_scout.cjs scout minimal --deep 2 --out /tmp/vibe-scout
-node scripts/visual_scout.cjs scout godly --deep 2 --out /tmp/vibe-scout
+node scripts/visual_scout.cjs scout minimal --deep 2 --out /tmp/ui-lookbook-scout
+node scripts/visual_scout.cjs scout godly --deep 2 --out /tmp/ui-lookbook-scout
 
 # 2. Browse mode-calibrated MIT component recipes
 python3 scripts/query_refs.py recipes --stack react --mode editorial
@@ -110,7 +110,7 @@ python3 scripts/query_refs.py designeer "button"
 python3 scripts/query_refs.py llms navbar "mega"
 
 # 5. Run objective desktop (1440x960) + mobile (390x844) audit on your built dist/
-node scripts/visual_scout.cjs audit ./my-app --out /tmp/vibe-audit
+node scripts/visual_scout.cjs audit ./my-app --out /tmp/ui-lookbook-audit
 ```
 
 ---
@@ -118,7 +118,7 @@ node scripts/visual_scout.cjs audit ./my-app --out /tmp/vibe-audit
 ## Repository Layout
 
 ```text
-vibe-ui-refs/
+ui-lookbook/
 ├── SKILL.md                           # Core skill instructions & 4-stage workflow
 ├── agents/openai.yaml                 # Codex UI metadata & implicit invocation policy
 ├── references/

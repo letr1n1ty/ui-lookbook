@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic, cached lookup helper for vibe-ui-refs.
+"""Deterministic, cached lookup helper for ui-lookbook.
 
 Queries S-tier component registries (catalog + full component source code) and
 A-tier inspiration endpoints (llms.txt, Designeer Markdown, Siteinspire API)
@@ -21,9 +21,9 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-CACHE_DIR = Path(tempfile.gettempdir()) / "vibe-ui-refs-cache"
+CACHE_DIR = Path(tempfile.gettempdir()) / "ui-lookbook-cache"
 CACHE_TTL_SECONDS = 3600
-USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) VibeUIRefs/1.0"
+USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) UILookbook/1.0"
 
 REGISTRIES = {
     "magicui": {
@@ -392,7 +392,7 @@ def cmd_recipes(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(description="vibe-ui-refs lookup utility")
+    p = argparse.ArgumentParser(description="ui-lookbook lookup utility")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     p_rec = sub.add_parser("recipes", help="List curated high-visual-impact WebGL shaders, kinetic type & 3D stages")
