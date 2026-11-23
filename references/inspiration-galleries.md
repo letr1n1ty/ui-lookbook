@@ -41,7 +41,7 @@ python3 <skill-dir>/scripts/query_refs.py llms awwwards
 
 Merely citing a gallery URL does not improve UI quality. After retrieving reference entries (or taking 1–2 targeted screenshots), synthesize a **4-Point Structural Spec** before writing code:
 
-1. **Section / State Architecture**: Above-the-fold hierarchy and secondary expansion mechanics (e.g., for Mega Menus: top-level triggers + multi-column categorized index + featured visual preview card + `Escape` / outside-click dismissal + ARIA state).
-2. **Typographic Scale Contrast**: Explicit ratio between display wordmark/headline (e.g., `clamp(3.5rem, 9vw, 8.5rem)` in an oversized typographic footer) and utility metadata (`11px–13px` tracked uppercase or `tabular-nums`).
-3. **Grid & Border Discipline**: Hairline structural dividers (`1px` subtle border), asymmetric column splits (e.g., `5fr / 7fr` or `4fr / 8fr` instead of uniform 3-equal-card clichés), and generous vertical breathing room.
-4. **Signature Focal Interaction**: One deliberate, cohesive interaction cue rather than noisy animations on every element.
+1. **Hero archetype**: Read `dna.heroArchetype` and `dna.heroMediaCoverage` from the scout output. `full-bleed-immersive` (coverage ≥ 0.7) means the reference lets one image own the first screen; `dark-precision-stage` means a dark canvas where the product UI is the hero image; `editorial-composition` means type and grid lead. Match the archetype's scale, not its colors.
+2. **Tonal chapters**: List the 3–5 chapters of the page and the luminance of each (for example: dark photo hero → light index → dark interactive chapter → light statements → dark footer). Two adjacent chapters should rarely share the same surface.
+3. **Type scale and label budget**: Record the reference's H1 size/weight/tracking from `dna.h1`, then set a label budget: eyebrows, badges and bordered boxes only where they carry information.
+4. **Signature interaction**: One domain-authentic centrepiece (a solar section you can scrub, a real diff with a counterexample, a playable instrument) rather than motion on every element.

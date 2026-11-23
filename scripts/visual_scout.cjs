@@ -106,6 +106,14 @@ function serveStatic(rootDir) {
 }
 
 async function extractLiveSiteDna(page) {
+  await page.waitForLoadState("networkidle", { timeout: 5000 }).catch(() => {});
+  await page.evaluate(async () => {
+    if (document.fonts && document.fonts.ready) {
+      await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2000))]);
+    }
+  }).catch(() => {});
+  await page.mouse.move(720, 420).catch(() => {});
+  await page.waitForTimeout(1600);
   return page.evaluate(() => {
     const cs = (el) => (el ? getComputedStyle(el) : null);
     const body = cs(document.body);
@@ -113,16 +121,36 @@ async function extractLiveSiteDna(page) {
     const h1 = cs(h1El);
     const navEl = document.querySelector("header, nav");
     const navRect = navEl ? navEl.getBoundingClientRect() : null;
-    const sections = Array.from(document.querySelectorAll("main > section, section, article")).slice(0, 6).map((s) => {
+    const vw = window.innerWidth || 1440;
+    const vh = window.innerHeight || 960;
+    let maxHeroMediaArea = 0;
+    for (const el of document.querySelectorAll("img, video, canvas, svg, [class*=\"stage\" i], [class*=\"preview\" i]")) {
+      const r = el.getBoundingClientRect();
+      const ix = Math.max(0, Math.min(r.right, vw) - Math.max(r.left, 0));
+      const iy = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+      maxHeroMediaArea = Math.max(maxHeroMediaArea, ix * iy);
+    }
+    const heroMediaCoverage = Number((maxHeroMediaArea / (vw * vh)).toFixed(2));
+    const sections = Array.from(document.querySelectorAll("main > section, section, article, footer")).slice(0, 8).map((s) => {
       const st = getComputedStyle(s);
       return { padTop: st.paddingTop, padBottom: st.paddingBottom, bg: st.backgroundColor, display: st.display };
     });
+    const distinctSectionBgs = Array.from(new Set(sections.map((s) => s.bg).filter((b) => b && b !== "rgba(0, 0, 0, 0)" && b !== "transparent")));
     return {
       title: document.title.slice(0, 80),
       bodyBg: body ? body.backgroundColor : "",
       bodyColor: body ? body.color : "",
       bodyFont: body ? body.fontFamily.slice(0, 90) : "",
       navHeightPx: navRect ? Math.round(navRect.height) : null,
+      heroMediaCoverage,
+      heroArchetype:
+        heroMediaCoverage >= 0.72
+          ? "full-bleed-immersive"
+          : body && /^rgb\((\d+),\s*(\d+),\s*(\d+)/.test(body.backgroundColor) &&
+            body.backgroundColor.match(/\d+/g).slice(0, 3).every((n) => Number(n) < 32)
+          ? "dark-precision-stage"
+          : "editorial-composition",
+      distinctSectionBgs,
       h1: h1 ? {
         text: (h1El.innerText || "").trim().replace(/\s+/g, " ").slice(0, 70),
         fontFamily: h1.fontFamily.slice(0, 90),
@@ -162,7 +190,8 @@ async function cmdScout(target, outDir, deepCount) {
     const page = await ctx.newPage();
     const resp = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 12000 });
     const status = resp ? resp.status() : 0;
-    await page.waitForTimeout(1400);
+    await page.waitForLoadState("networkidle", { timeout: 5000 }).catch(() => {});
+    await page.waitForTimeout(2400);
     if (await isPageGated(page, status)) {
       console.log(JSON.stringify({ ok: false, status, gated: true, stopGate: "Aborted immediately without retry. Switch to minimal, godly, curated, or httpster." }, null, 2));
       return;
@@ -171,9 +200,9 @@ async function cmdScout(target, outDir, deepCount) {
     // If target is already a direct non-preset studio URL, extract DNA directly
     const isPreset = Boolean(PRESETS[target]);
     if (!isPreset) {
+      const dna = await extractLiveSiteDna(page);
       const heroShot = path.join(outDir, `live-1-hero.png`);
       await page.screenshot({ path: heroShot, fullPage: false });
-      const dna = await extractLiveSiteDna(page);
       await page.evaluate(() => window.scrollBy(0, 860));
       await page.waitForTimeout(700);
       const midShot = path.join(outDir, `live-1-mid.png`);
@@ -212,13 +241,14 @@ async function cmdScout(target, outDir, deepCount) {
       try {
         const r = await sp.goto(extUrl, { waitUntil: "domcontentloaded", timeout: 10000 });
         const st = r ? r.status() : 0;
-        await sp.waitForTimeout(1500);
+        await sp.waitForLoadState("networkidle", { timeout: 5000 }).catch(() => {});
+        await sp.waitForTimeout(2200);
         if (await isPageGated(sp, st)) { await sp.close(); continue; }
         await sp.addStyleTag({ content: "#onetrust-banner-sdk, .fc-consent-root { display: none !important; }" }).catch(() => {});
         const idx = liveSites.length + 1;
+        const dna = await extractLiveSiteDna(sp);
         const heroPath = path.join(outDir, `live-${idx}-hero.png`);
         await sp.screenshot({ path: heroPath });
-        const dna = await extractLiveSiteDna(sp);
         await sp.evaluate(() => window.scrollBy(0, 860));
         await sp.waitForTimeout(700);
         const midPath = path.join(outDir, `live-${idx}-mid.png`);
@@ -276,7 +306,7 @@ async function cmdAudit(targetPath, outDir) {
       const clipped = [];
       for (const el of document.querySelectorAll("h1, h2, h3, button, badge, span, p")) {
         const st = getComputedStyle(el);
-        if ((st.overflowX === "hidden" || st.overflowY === "hidden") && el.children.length === 0) {
+        if ((st.overflowX === "hidden" || st.overflowY === "hidden") && el.children.length === 0 && el.clientHeight > 0 && el.clientWidth > 0) {
           if (el.scrollWidth > el.clientWidth + 4 || el.scrollHeight > el.clientHeight + 8) {
             clipped.push({ tag: el.tagName, text: (el.innerText || "").slice(0, 40), clientW: el.clientWidth, scrollW: el.scrollWidth, clientH: el.clientHeight, scrollH: el.scrollHeight });
           }

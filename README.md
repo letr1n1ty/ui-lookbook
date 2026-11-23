@@ -15,17 +15,17 @@ Instead of pasting static bookmarks into a prompt or slapping random animations 
 
 ## Visual Showcase (Blind Evaluation Outputs)
 
-All pages below were generated end-to-end by an independent agent equipped with `ui-lookbook` and verified at `1440×960` desktop and `390×844` mobile with `0px` overflow.
+These pages were built with `ui-lookbook` and verified at `1440×960` desktop and `390×844` mobile with `0px` overflow. Mode C was generated end-to-end by a clean-context agent; Modes A and B were rebuilt following the revised composition rules after review, so treat them as showcases of the rules rather than blind test output.
 
-### Mode A — Editorial & Minimal Restraint (Zero WebGL, Monograph Grid)
-*Atelier Kuroda (Kyoto / Taipei architecture studio): inspired by live Minimal Gallery & Siteinspire architectural studios, pairing borderless Passe-Partout 4×5 photography with hairline monograph typography and interactive solar section diagrams.*
+### Mode A — Editorial Restraint (Zero WebGL, Full-Bleed Photography)
+*Soraia (Zurich / Lisbon architecture practice): scouted Siteinspire architecture studios (TaylorHare, maximale) whose heroes are full-bleed photography. Result: a 100svh blue-hour hero plate, a typographic works index with one dominant plate, a dark heliodon chapter with a scrubbable solar section, and a monumental colophon. Zero WebGL.*
 
 | Hero Spread | Interactive Monograph & Solar Study |
 | :---: | :---: |
 | ![Mode A Hero](docs/images/mode-a-architecture-hero.jpg) | ![Mode A Showcase](docs/images/mode-a-architecture-showcase.jpg) |
 
-### Mode B — Brand Narrative & Local Upgrade (Strict Incumbent Token Fidelity)
-*Veriflow formal verification page: upgraded only the header Mega Menu and interactive verification workbench while preserving existing `--vf-*` warm-paper design tokens, `Escape`/outside-click focus restoration, and zero mobile overflow.*
+### Mode B — Brand Narrative & Product Stage (Live linear.app Scout)
+*Veriflow (formal verification SaaS): translated from a live `linear.app` scout. Dark precision canvas, tight display sans, and the real product (merge queue, failing diff, Z3 witness inspector) as the hero image; Mega Menu and side-by-side Z3 / Lean 4 workbench keep full keyboard and Escape handling.*
 
 | Multi-Column Architecture Mega Menu | Counterexample vs. Lean 4 Proof Workbench |
 | :---: | :---: |

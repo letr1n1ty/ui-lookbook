@@ -17,11 +17,16 @@ Before scouting or picking components, inspect `package.json` and existing CSS/t
 
 | Mode | Target Domains | Visual & Motion Strategy |
 | :--- | :--- | :--- |
-| **A. Editorial & Minimal Restraint** | Architecture, spatial studios, luxury, fashion, galleries, monographs | **Zero WebGL shaders, zero kinetic tickers, zero neon/glowing borders.** Craft comes from generous negative space, asymmetric hairline grids, rich tonal photography/architectural light studies, optical serif + tabular mono contrast, and quiet `180–260ms` transitions. |
-| **B. Brand Narrative & Local Upgrade** | SaaS, developer tools, fintech, partial section upgrades (Navbar/Footer/Workbench) | **Incumbent design tokens win first** on existing pages: match established palette, fonts, border weights, and voice so upgraded sections feel native, never bolted-on. Build a **genuinely functional interactive product stage** + 1–2 restrained primitives (`direction-aware-tabs`, `navbar-menu`, `SpotlightCard`, `Magnet`). |
+| **A. Editorial & Minimal Restraint** | Architecture, spatial studios, luxury, fashion, galleries, monographs | **Zero WebGL shaders, zero kinetic tickers, zero SaaS card/tab grids.** Open with **full-bleed (`100svh`) or dominant edge-anchored architectural photography**, use **staggered asymmetric gallery spreads** (varied `16:9` + `4:5` plates, generous silence), and introduce **chiaroscuro chapter contrast** (pair chalk/stone chapters with at least one deep obsidian `#0C0D0C` section/blueprint or colophon room). |
+| **B. Brand Narrative & Product Stage** | SaaS, developer tools, fintech, or scoped section upgrades (Navbar/Footer/Workbench) | **New / redesigned SaaS (`B1`)**: commit to high-contrast optical craft (e.g., `linear.app` deep `#08090A` obsidian canvas, tight `-0.025em` geometric sans, `1px` specular rim-lit multi-pane product theater, translucent `backdrop-blur` Mega Menu, semantic diff/telemetry highlights). **Scoped patch on an existing brand (`B2`)**: preserve incumbent tokens on existing chrome while giving the focal workbench/footer real spatial depth. |
 | **C. Immersive & Experimental** | Audio/music synths, creative labs, AI art, interactive launches | Deploy tactile domain instruments (playable knobs, real-time spectrum/waveform canvas) + atmospheric WebGL/kinetic components (`Ferrofluid`, `Silk`, `Grainient`, `SplitFlapText`), strictly enforcing **Section 4 Runtime & GPU Hygiene**. |
 
-> **Photography-First Rule for Mode A**: Architecture, interiors, luxury, and hospitality brands rely on real photographic materiality. When user photos are absent and an image generation tool (e.g. `imagegen`) is available, generate 2–4 bespoke editorial photographs (such as 4x5 architectural daylight photography) and frame them inside borderless monograph spreads or Passe-Partout mats rather than bordered gray cards. Use `<canvas>` tonal light studies only for interactive solar/section diagrams or when image generation is unavailable.
+> **Restraint is not timidity.** The most common failure is a page that is technically clean but visually flat: one surface color for the whole scroll, a small tracked-uppercase eyebrow above every heading, the same `[left heading | right blurb]` row repeated per section, and content boxed into bordered cards or tab strips. Real reference sites avoid this through three decisions you must make explicitly:
+> 1. **One dominant visual per viewport.** Let the hero subject (photograph, product window, instrument) occupy most of the first screen. Mode A: large or full-bleed photography. Mode B: the actual product UI, rendered with real data, as the hero image.
+> 2. **Tonal chapters.** Plan the scroll as 3–5 chapters with deliberate luminance shifts (light/dark, photo/type, dense/quiet), derived from the brand rather than a fixed palette.
+> 3. **Typography carries hierarchy.** Use a large display scale with few labels; delete decorative eyebrows, badges and borders that do not encode information.
+>
+> For an existing brand (`B2` local upgrade), keep its tokens, but if the incumbent page itself has these flat patterns, say so and propose the upgrade instead of copying them into new sections.
 
 ---
 
@@ -79,3 +84,4 @@ node <skill-dir>/scripts/visual_scout.cjs audit <project-dir> --out /tmp/ui-look
 ```
 
    Confirm `runtimeErrors`, `horizontalOverflow`, `clippedText`, and `brokenImages` are all empty, then **call `view_image` on `audit-desktop-hero.png`, `audit-desktop-mid.png`, and `audit-mobile.png`**. Fix any cramped mobile layout, clipped glyph, or generic wireframe box before finishing.
+4. **Side-by-side critique against the reference.** Put your hero screenshot next to the scouted `live-*-hero.png` and answer honestly: does the first screen have one dominant visual at comparable scale? Does the scroll change tone at least twice? Would the page still be recognisable with the logo removed? If any answer is no, revise the composition (not just colors) and re-audit.

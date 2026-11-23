@@ -13,19 +13,19 @@
 
 ---
 
-## 實測成品展示（獨立盲測渲染結果）
+## 實測成品展示
 
-以下三組頁面皆由乾淨上下文代理掛載 `ui-lookbook` 端對端生成，並通過桌機 `1440×960` 與手機 `390×844` 無頭瀏覽器 `0px` 溢位驗證。
+以下頁面皆使用 `ui-lookbook` 製作，並通過桌機 `1440×960` 與手機 `390×844` 無頭瀏覽器 `0px` 溢位驗證。Mode C 由乾淨上下文代理端對端生成；Mode A、B 是審查後依修訂版構圖規則重做，屬規則示範，並非盲測產出。
 
-### Mode A — 極簡編輯與奢華克制（零 WebGL、專論無框版式）
-*Atelier Kuroda（京都／臺北建築事務所）：深入拆解 Minimal Gallery 與 Siteinspire 建築實站後，完全排除花俏特效，結合無框礦物裱背（Passe-Partout）4×5 自然光建築攝影、雙城即時座標細線與互動太陽高度角剖面研究檯。*
+### Mode A — 極簡編輯克制（零 WebGL、滿版攝影）
+*Soraia（蘇黎世／里斯本建築事務所）：從 Siteinspire 建築類實站（TaylorHare、maximale）讀出「首屏由一張滿版攝影主導」的構圖，轉成 100svh 藍調時刻主視覺、單一主圖搭配大字作品索引、可拖曳日照剖面的深色章節與巨型字標頁尾。全程零 WebGL。*
 
 | 首屏雙聯畫與雙城座標基準列 | 互動建築作品專論檢視檯 |
 | :---: | :---: |
 | ![Mode A 首屏](docs/images/mode-a-architecture-hero.jpg) | ![Mode A 專論檢視檯](docs/images/mode-a-architecture-showcase.jpg) |
 
-### Mode B — 品牌敘事與既有系統局部升級（嚴守既有色票變數）
-*Veriflow 形式化驗證平台：完整保留既有 `--vf-*` 暖紙深墨視覺系統與首屏結構，僅針對頂部導覽與中段工作台進行精準升級，打造含四階段即時架構預覽的 Mega Menu（支援 `Escape` 歸還焦點）及並排反例／Lean 4 證明工作台，行動版 `0px` 溢位。*
+### Mode B — 品牌敘事與產品舞台（實測 linear.app 偵察）
+*Veriflow（形式化驗證 SaaS）：轉譯自實際 `linear.app` 偵察。深色精密畫布、緊湊無襯線大標，首屏主視覺直接是產品本身（合併佇列、出錯的 diff、Z3 反例檢視窗）；Mega Menu 與並排 Z3／Lean 4 工作台保留完整鍵盤與 Escape 操作。*
 
 | 多欄架構即時預覽 Mega Menu | 漏洞反例 vs Lean 4 數學證明工作台 |
 | :---: | :---: |
